@@ -1,0 +1,129 @@
+{
+    "latex-workshop.latex.recipes": [
+      {
+          "name": "ptex2pdf",
+          "tools": [
+              "ptex2pdf",
+              "ptex2pdf"
+          ]
+      },
+      {
+          "name": "ptex2pdf -> pbibtex -> ptex2pdf",
+          "tools": [
+              "ptex2pdf",
+              "pbibtex",
+              "ptex2pdf",
+              "ptex2pdf"
+          ]
+      },
+    ],
+    "latex-workshop.latex.tools": [
+      {
+        "name": "latexmk",
+        "command": "docker",
+        "args": [
+          "run",
+          "--rm",
+          "-v",
+          "%DIR%:/texsrc",
+          "rnakajima/latex-vlsi",
+          "latexmk",
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "-pdf",
+          "/texsrc/%DOCFILE_EXT%"
+        ]
+      },
+      {
+        "name": "pdflatex",
+        "command": "docker",
+        "args": [
+          "run",
+          "--rm",
+          "-v",
+          "%DIR%:/texsrc",
+          "rnakajima/latex-vlsi",
+          "pdflatex",
+          "-synctex=1",
+          "-interaction=nonstopmode",
+          "-file-line-error",
+          "/texsrc/%DOCFILE_EXT%"
+        ]
+      },
+      {
+        "name": "bibtex",
+        "command": "docker",
+        "args": [
+          "run",
+          "--rm",
+          "-v",
+          "%DIR%:/texsrc",
+          "rnakajima/latex-vlsi",
+          "bibtex",
+          "%DOCFILE%"
+        ]
+      },
+      {
+        "name": "ptex2pdf",
+        "command": "docker",
+        "args": [
+          "run",
+          "--rm",
+          "-v",
+          "%DIR%:/texsrc",
+          "rnakajima/latex-vlsi",
+          "ptex2pdf",
+          "-l",
+          "-ot",
+          "-kanji=utf8 -synctex=1",
+          "-interaction=nonstopmode",
+          "/texsrc/%DOCFILE_EXT%"
+        ]
+      },
+      {
+        "name": "ptex2pdf(uplatex)",
+        "command": "docker",
+        "args": [
+          "run",
+          "--rm",
+          "-v",
+          "%DIR%:/texsrc",
+          "rnakajima/latex-vlsi",
+          "ptex2pdf",
+          "-l",
+          "-u",
+          "-ot",
+          "-kanji=utf8 -synctex=1",
+          "-interaction=nonstopmode",
+          "/texsrc/%DOCFILE_EXT%"
+        ]
+      },
+      {
+        "name": "pbibtex",
+        "command": "docker",
+        "args": [
+          "run",
+          "--rm",
+          "-v",
+          "%DIR%:/texsrc",
+          "rnakajima/latex-vlsi",
+          "pbibtex",
+          "-kanji=utf8",
+          "%DOCFILE%"
+        ]
+      },
+    ],
+    "latex-workshop.latex.autoBuild.run": "onFileChange",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "security.workspace.trust.enabled": false,
+
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "workbench.editorAssociations": {
+      "*.pdf": "latex-workshop-pdf-hook"
+    }
+  }  
